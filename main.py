@@ -168,8 +168,6 @@ def mapTablaIngresos(data):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-
-       
     ui_file_name = "main.ui"
     ui_file = QFile(ui_file_name)
     if not ui_file.open(QIODevice.ReadOnly):

@@ -1,0 +1,5 @@
+pip install --upgrade firebase-admin
+pip intall pandas 
+pip insall pyside6
+pip install getmac
+pip install requests
