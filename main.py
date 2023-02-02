@@ -3,7 +3,7 @@ import rc_icons
 import pandas as pd
 import requests
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QApplication,QMessageBox,QTableWidgetItem,QFileDialog
+from PySide6.QtWidgets import QApplication,QMessageBox,QTableWidgetItem,QFileDialog,QMainWindow
 from PySide6.QtCore import QFile, QIODevice
 from PySide6.QtGui  import QIcon
 from getmac import get_mac_address as gma
@@ -11,7 +11,7 @@ from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-
+from Ui_MainWindow import Ui_MainWindow
 # Use a service account.
 cred = credentials.Certificate('config.json')
 app = firebase_admin.initialize_app(cred)
@@ -23,7 +23,7 @@ users_salidas = []
 doc_ref = db.collection(u'empleados').document(user_mac)
 import requests
 try:
-    request = requests.get("http://www.google.com", timeout=5)
+    request = requests.get("http://www.google.com", timeout=1)
 except (requests.ConnectionError, requests.Timeout):
     user_data = {
         u'apellido': u'sin conexion',
@@ -88,111 +88,103 @@ def generarExcel():
         QMessageBox.critical(None,'Error!',"Algo sucedio mal intente nuevamente!", QMessageBox.Abort)
 
    
-def registrar_fecha():
-
-    ingreso = window.radIngreso.isChecked()
-    if ingreso:
-        firebase_puntero = "ingreso"
-        firebase_db = "ingresos"
-    else:
-        firebase_puntero = "salida"
-        firebase_db = "salidas"
-    msgBox = QMessageBox()
-    msgBox.setText("Se va a registrar como {}".format(firebase_puntero))
-    msgBox.setInformativeText("Estas seguro de continuar?")
-
-    msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-    msgBox.setDefaultButton(QMessageBox.Cancel)
-    ret = msgBox.exec()
-    if ret == QMessageBox.Ok:
-        tiempo = datetime.today()
-        fecha = str(tiempo.year)+'-'+str(tiempo.month)+'-'+str(tiempo.day)
-        hora = str(tiempo.hour)+':'+str(tiempo.minute)+':'+str(tiempo.second)
-        mac = gma()
-        comentario = window.comentario.text()
-
-        data_firebase = {"fecha":fecha,"hora":hora,"mac":mac,"comentario":comentario,"tipo":firebase_puntero}
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        self.ui = Ui_MainWindow()
+        #self.ui.dash_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.DashBoardView))
+        #self.ui.config_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.ConfigView))
+        #self.ui.btnExcel.clicked.connect(lambda: self.generarExcel())
+        #self.ui.btnNames.clicked.connect(lambda: self.updateNames())
+        # self.ui.macLabel.setText(user_mac)
+        # self.ui.lastnameLabel.setText(user_data['apellido'])
+        # self.ui.nameLabel.setText(user_data['nombre'])
+        # self.ui.lastTxt.setText(user_data['apellido'])
+        # self.ui.nameTxt.setText(user_data['nombre'])
+        # self.ui.exit_btn.clicked.connect(lambda: sys.exit(-1) )
+        # #self.ui.registrar_btn.clicked.connect(lambda: self.registrar_fecha())
+        # self.ui.tableIngresos.setColumnWidth(0,20)
+        # self.ui.tableSalidas.setColumnWidth(0, 20)
+        # self.mapTablaIngresos(user_ingresos)
+        # self.mapTableSalidas(users_salidas)
+    def mapTablaIngresos(self,data):
+        self.ui.tableIngresos.clear()
+        columns = ['#','Fecha','Hora','Comentario']
+        self.ui.tableIngresos.setHorizontalHeaderLabels(columns)
+        row = 0
+        for e in data:
+            self.ui.tableIngresos.insertRow(row)
+            self.ui.tableIngresos.setItem(row, 0, QTableWidgetItem(str(row+1)))
+            self.ui.tableIngresos.setItem(row, 1, QTableWidgetItem(str(e['fecha'])))
+            self.ui.tableIngresos.setItem(row, 2, QTableWidgetItem(str(e['hora'])))
+            self.ui.tableIngresos.setItem(row, 3, QTableWidgetItem(str(e['comentario'])))
+            row += 1
+    def updateNames(self):
+        lastaname = self.ui.lastTxt.text()
+        name = self.ui.nameTxt.text()
+        newDatos = {'apellido':lastaname,'nombre':name}
+        doc_ref = db.collection(u'empleados').document(user_mac)
+        doc_ref.update(newDatos)
+        self.ui.lastnameLabel.setText(lastaname)
+        self.ui.nameLabel.setText(name)
+    def mapTableSalidas(self,data):
+        self.ui.tableSalidas.clear()
+        columns = ['#','Fecha','Hora','Comentario']
+        self.ui.tableSalidas.setHorizontalHeaderLabels(columns)
+        row = 0
+        for e in data:
+            self.ui.tableSalidas.insertRow(row)
+            self.ui.tableSalidas.setItem(row, 0, QTableWidgetItem(str(row + 1)))
+            self.ui.tableSalidas.setItem(row, 1, QTableWidgetItem(str(e['fecha'])))
+            self.ui.tableSalidas.setItem(row, 2, QTableWidgetItem(str(e['hora'])))
+            self.ui.tableSalidas.setItem(row, 3, QTableWidgetItem(str(e['comentario'])))
+            row += 1
+    def registrar_fecha(self):
+        ingreso = self.ui.radIngreso.isChecked()
         if ingreso:
-            user_ingresos.insert(0, data_firebase)
-            estructure_firebase = {firebase_db:user_ingresos}
-            window.tableIngresos.clear()
-            mapTablaIngresos(user_ingresos)
+            firebase_puntero = "ingreso"
+            firebase_db = "ingresos"
         else:
-            users_salidas.insert(0, data_firebase)
-            estructure_firebase = {firebase_db:users_salidas}
-            mapTableSalidas(users_salidas)
-        try:
-            doc_ref = db.collection(u'empleados').document(mac)
-            doc_ref.update(estructure_firebase)
-        except:
-            print("error al enviar datos")
-        window.comentario.setText("")
+            firebase_puntero = "salida"
+            firebase_db = "salidas"
+        msgBox = QMessageBox()
+        msgBox.setText("Se va a registrar como {}".format(firebase_puntero))
+        msgBox.setInformativeText("Estas seguro de continuar?")
+
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.setDefaultButton(QMessageBox.Cancel)
+        ret = msgBox.exec()
+        if ret == QMessageBox.Ok:
+            tiempo = datetime.today()
+            fecha = str(tiempo.year)+'-'+str(tiempo.month)+'-'+str(tiempo.day)
+            hora = str(tiempo.hour)+':'+str(tiempo.minute)+':'+str(tiempo.second)
+            mac = gma()
+            comentario = self.ui.comentario.text()
+
+            data_firebase = {"fecha":fecha,"hora":hora,"mac":mac,"comentario":comentario,"tipo":firebase_puntero}
+            if ingreso:
+                user_ingresos.insert(0, data_firebase)
+                estructure_firebase = {firebase_db:user_ingresos}
+                self.ui.tableIngresos.clear()
+                self.mapTablaIngresos(user_ingresos)
+            else:
+                users_salidas.insert(0, data_firebase)
+                estructure_firebase = {firebase_db:users_salidas}
+                self.mapTableSalidas(users_salidas)
+            try:
+                doc_ref = db.collection(u'empleados').document(mac)
+                doc_ref.update(estructure_firebase)
+            except:
+                print("error al enviar datos")
+            self.ui.comentario.setText("")
 
 
-    else:
-        print("se cancelo")
-
-def updateNames():
-    lastaname = window.lastTxt.text()
-    name = window.nameTxt.text()
-    newDatos = {'apellido':lastaname,'nombre':name}
-    doc_ref = db.collection(u'empleados').document(user_mac)
-    doc_ref.update(newDatos)
-    window.lastnameLabel.setText(lastaname)
-    window.nameLabel.setText(name)
-
-def mapTableSalidas(data):
-    window.tableSalidas.clear()
-    columns = ['#','Fecha','Hora','Comentario']
-    window.tableSalidas.setHorizontalHeaderLabels(columns)
-    row = 0
-    for e in data:
-        window.tableSalidas.insertRow(row)
-        window.tableSalidas.setItem(row, 0, QTableWidgetItem(str(row + 1)))
-        window.tableSalidas.setItem(row, 1, QTableWidgetItem(str(e['fecha'])))
-        window.tableSalidas.setItem(row, 2, QTableWidgetItem(str(e['hora'])))
-        window.tableSalidas.setItem(row, 3, QTableWidgetItem(str(e['comentario'])))
-        row += 1
-def mapTablaIngresos(data):
-    window.tableIngresos.clear()
-    columns = ['#','Fecha','Hora','Comentario']
-    window.tableIngresos.setHorizontalHeaderLabels(columns)
-    row = 0
-    for e in data:
-        window.tableIngresos.insertRow(row)
-        window.tableIngresos.setItem(row, 0, QTableWidgetItem(str(row+1)))
-        window.tableIngresos.setItem(row, 1, QTableWidgetItem(str(e['fecha'])))
-        window.tableIngresos.setItem(row, 2, QTableWidgetItem(str(e['hora'])))
-        window.tableIngresos.setItem(row, 3, QTableWidgetItem(str(e['comentario'])))
-        row += 1
-
+        else:
+            print("se cancelo")
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    ui_file_name = "main.ui"
-    ui_file = QFile(ui_file_name)
-    if not ui_file.open(QIODevice.ReadOnly):
-        sys.exit(-1)
-    loader = QUiLoader()
-    window = loader.load(ui_file)
-    window.report_btn.clicked.connect(lambda: window.stackedWidget.setCurrentWidget(window.ReportView))
-    window.dash_btn.clicked.connect(lambda: window.stackedWidget.setCurrentWidget(window.DashBoardView))
-    window.config_btn.clicked.connect(lambda: window.stackedWidget.setCurrentWidget(window.ConfigView))
-    window.btnExcel.clicked.connect(lambda: generarExcel())
-    window.btnNames.clicked.connect(lambda: updateNames())
-    window.macLabel.setText(user_mac)
-    window.lastnameLabel.setText(user_data['apellido'])
-    window.nameLabel.setText(user_data['nombre'])
-    window.lastTxt.setText(user_data['apellido'])
-    window.nameTxt.setText(user_data['nombre'])
-    window.exit_btn.clicked.connect(lambda: sys.exit(-1) )
-    window.registrar_btn.clicked.connect(lambda: registrar_fecha())
-    window.tableIngresos.setColumnWidth(0,20)
-    window.tableSalidas.setColumnWidth(0, 20)
-    mapTablaIngresos(user_ingresos)
-    mapTableSalidas(users_salidas)
 
-    ui_file.close()
-    if not window:
-        sys.exit(-1)
+    window = MainWindow()
     window.show()
+
     sys.exit(app.exec())
