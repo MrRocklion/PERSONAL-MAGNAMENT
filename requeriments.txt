@@ -3,3 +3,4 @@ pip intall pandas
 pip insall pyside6
 pip install getmac
 pip install requests
+pip install openpyxl

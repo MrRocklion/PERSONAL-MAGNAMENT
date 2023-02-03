@@ -1,7 +1,7 @@
 import sys
 import os
 from cx_Freeze  import setup, Executable
-files=["config.json","main.ui"]
+files=["config.json","ui_main.py"]
 base = ""
 if sys.platform == 'win32':
     base = "Win32GUI"

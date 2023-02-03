@@ -11,7 +11,7 @@ from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-from Ui_MainWindow import Ui_MainWindow
+from ui_main import Ui_MainWindow
 # Use a service account.
 cred = credentials.Certificate('config.json')
 app = firebase_admin.initialize_app(cred)
@@ -21,20 +21,8 @@ user_data = {}
 user_ingresos = []
 users_salidas = []
 doc_ref = db.collection(u'empleados').document(user_mac)
-import requests
+
 try:
-    request = requests.get("http://www.google.com", timeout=1)
-except (requests.ConnectionError, requests.Timeout):
-    user_data = {
-        u'apellido': u'sin conexion',
-        u'nombre': u'sin conexion',
-        u'ingresos': [],
-        u'salidas': []
-        }
-    user_ingresos = user_data["ingresos"]
-    users_salidas = user_data["salidas"]
-    print("Sin conexión a internet.")
-else:
     doc = doc_ref.get()
     if doc.exists:
         user_data = doc.to_dict()
@@ -53,60 +41,31 @@ else:
         user_ingresos = user_data["ingresos"]
         users_salidas = user_data["salidas"]
         doc_ref.set(user_data)
-
-def generarExcel():
-    print("se genera excel")
-    
-    try:
-        doc_ref = db.collection(u'empleados').document(user_mac)
-        doc = doc_ref.get()
-        if doc.exists:
-            tiempo = datetime.today()
-            fecha = str(tiempo.year)+'-'+str(tiempo.month)+'-'+str(tiempo.day)
-            hora = str(tiempo.hour)+'-'+str(tiempo.minute)+'-'+str(tiempo.second)
-            user_data = doc.to_dict()
-            df_ingresos = pd.DataFrame(data=user_data['ingresos'])
-            df_salidas = pd.DataFrame(data=user_data['salidas'])
-            datos_personales = {'nombres':user_data['nombre'],"apellidos":user_data['apellido']}
-            print(datos_personales)
-            df_datosp = pd.DataFrame(data=datos_personales,index=[0])
-            dialog = QFileDialog().getSaveFileName(
-            caption='Save File As',
-                dir='{}-{}'.format(fecha,hora),
-                selectedFilter="Excel Files (*.xlsx)"
-            )
-            dir = dialog[0]+".xlsx"
-            print(dir)
-            writer = pd.ExcelWriter(dir, engine='xlsxwriter')
-            df_ingresos.to_excel(writer, sheet_name='Ingresos')
-            df_salidas.to_excel(writer, sheet_name='Salidas')
-            df_datosp.to_excel(writer, sheet_name='Datos Personales')
-            writer.close()
-        else:
-            print(u'No such document!')
-    except:
-        QMessageBox.critical(None,'Error!',"Algo sucedio mal intente nuevamente!", QMessageBox.Abort)
+except:
+    print("error")
 
    
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
-        #self.ui.dash_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.DashBoardView))
-        #self.ui.config_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.ConfigView))
-        #self.ui.btnExcel.clicked.connect(lambda: self.generarExcel())
-        #self.ui.btnNames.clicked.connect(lambda: self.updateNames())
-        # self.ui.macLabel.setText(user_mac)
-        # self.ui.lastnameLabel.setText(user_data['apellido'])
-        # self.ui.nameLabel.setText(user_data['nombre'])
-        # self.ui.lastTxt.setText(user_data['apellido'])
-        # self.ui.nameTxt.setText(user_data['nombre'])
-        # self.ui.exit_btn.clicked.connect(lambda: sys.exit(-1) )
-        # #self.ui.registrar_btn.clicked.connect(lambda: self.registrar_fecha())
-        # self.ui.tableIngresos.setColumnWidth(0,20)
-        # self.ui.tableSalidas.setColumnWidth(0, 20)
-        # self.mapTablaIngresos(user_ingresos)
-        # self.mapTableSalidas(users_salidas)
+        self.ui.setupUi(self)
+        self.ui.dash_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.DashBoardView))
+        self.ui.config_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.ConfigView))
+        self.ui.report_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.ReportView))
+        self.ui.btnExcel.clicked.connect(lambda: self.generarExcel())
+        self.ui.btnNames.clicked.connect(lambda: self.updateNames())
+        self.ui.macLabel.setText(user_mac)
+        self.ui.lastnameLabel.setText(user_data['apellido'])
+        self.ui.nameLabel.setText(user_data['nombre'])
+        self.ui.lastTxt.setText(user_data['apellido'])
+        self.ui.nameTxt.setText(user_data['nombre'])
+        self.ui.exit_btn.clicked.connect(lambda: sys.exit(-1) )
+        self.ui.registrar_btn.clicked.connect(lambda: self.registrar_fecha())
+        self.ui.tableIngresos.setColumnWidth(0,20)
+        self.ui.tableSalidas.setColumnWidth(0, 20)
+        self.mapTablaIngresos(user_ingresos)
+        self.mapTableSalidas(users_salidas)
     def mapTablaIngresos(self,data):
         self.ui.tableIngresos.clear()
         columns = ['#','Fecha','Hora','Comentario']
@@ -150,7 +109,6 @@ class MainWindow(QMainWindow):
         msgBox = QMessageBox()
         msgBox.setText("Se va a registrar como {}".format(firebase_puntero))
         msgBox.setInformativeText("Estas seguro de continuar?")
-
         msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
         msgBox.setDefaultButton(QMessageBox.Cancel)
         ret = msgBox.exec()
@@ -181,6 +139,38 @@ class MainWindow(QMainWindow):
 
         else:
             print("se cancelo")
+        
+    def generarExcel(self):
+        print("se genera excel")
+        try:
+            doc_ref = db.collection(u'empleados').document(user_mac)
+            doc = doc_ref.get()
+            if doc.exists:
+                tiempo = datetime.today()
+                fecha = str(tiempo.year)+'-'+str(tiempo.month)+'-'+str(tiempo.day)
+                hora = str(tiempo.hour)+'-'+str(tiempo.minute)+'-'+str(tiempo.second)
+                user_data = doc.to_dict()
+                df_ingresos = pd.DataFrame(data=user_data['ingresos'])
+                df_salidas = pd.DataFrame(data=user_data['salidas'])
+                datos_personales = {'nombres':user_data['nombre'],"apellidos":user_data['apellido']}
+                df_datosp = pd.DataFrame(data=datos_personales,index=[0])
+                print(df_datosp)
+                dialog = QFileDialog().getSaveFileName(
+                caption='Save File As',
+                    dir='{}-{}'.format(fecha,hora),
+                    selectedFilter="Excel Files (*.xlsx)"
+                )
+                dir = dialog[0]+".xlsx"
+                print(dir)
+                with pd.ExcelWriter(dir) as writer:
+                    df_ingresos.to_excel(writer, sheet_name='Ingresos')
+                    df_salidas.to_excel(writer, sheet_name='Salidas')
+                    df_datosp.to_excel(writer, sheet_name='Datos Personales')
+            else:
+                print(u'No such document!')
+        except:
+            QMessageBox.critical(None,'Error!',"Algo sucedio mal intente nuevamente!", QMessageBox.Abort)
+       
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 

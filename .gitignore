@@ -8,3 +8,5 @@
 
 # production
 /.idea
+/build
+/.xlsx

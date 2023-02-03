@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainOEMFWH.ui'
+## Form generated from reading UI file 'mainSPBhtP.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
