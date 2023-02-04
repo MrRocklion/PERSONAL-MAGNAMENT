@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainfCrToe.ui'
+## Form generated from reading UI file 'mainLLDYgk.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.0
 ##
@@ -410,32 +410,15 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.label)
 
         self.tableIngresos = QTableWidget(self.frame_11)
-        if (self.tableIngresos.columnCount() < 4):
-            self.tableIngresos.setColumnCount(4)
+        if (self.tableIngresos.columnCount() < 3):
+            self.tableIngresos.setColumnCount(3)
         __qtablewidgetitem = QTableWidgetItem()
-        __qtablewidgetitem.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
         self.tableIngresos.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
         self.tableIngresos.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
         self.tableIngresos.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.tableIngresos.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        if (self.tableIngresos.rowCount() < 1):
-            self.tableIngresos.setRowCount(1)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.tableIngresos.setVerticalHeaderItem(0, __qtablewidgetitem4)
         self.tableIngresos.setObjectName(u"tableIngresos")
-        self.tableIngresos.setFrameShape(QFrame.NoFrame)
-        self.tableIngresos.setShowGrid(False)
-        self.tableIngresos.setWordWrap(True)
-        self.tableIngresos.setCornerButtonEnabled(True)
-        self.tableIngresos.setColumnCount(4)
-        self.tableIngresos.horizontalHeader().setCascadingSectionResizes(False)
-        self.tableIngresos.horizontalHeader().setProperty("showSortIndicator", False)
-        self.tableIngresos.horizontalHeader().setStretchLastSection(True)
-        self.tableIngresos.verticalHeader().setVisible(False)
-        self.tableIngresos.verticalHeader().setHighlightSections(True)
 
         self.verticalLayout_4.addWidget(self.tableIngresos)
 
@@ -459,28 +442,15 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.addWidget(self.label_2)
 
         self.tableSalidas = QTableWidget(self.frame_12)
-        if (self.tableSalidas.columnCount() < 4):
-            self.tableSalidas.setColumnCount(4)
+        if (self.tableSalidas.columnCount() < 3):
+            self.tableSalidas.setColumnCount(3)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.tableSalidas.setHorizontalHeaderItem(0, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.tableSalidas.setHorizontalHeaderItem(1, __qtablewidgetitem4)
         __qtablewidgetitem5 = QTableWidgetItem()
-        __qtablewidgetitem5.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
-        self.tableSalidas.setHorizontalHeaderItem(0, __qtablewidgetitem5)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.tableSalidas.setHorizontalHeaderItem(1, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.tableSalidas.setHorizontalHeaderItem(2, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.tableSalidas.setHorizontalHeaderItem(3, __qtablewidgetitem8)
+        self.tableSalidas.setHorizontalHeaderItem(2, __qtablewidgetitem5)
         self.tableSalidas.setObjectName(u"tableSalidas")
-        self.tableSalidas.setFrameShape(QFrame.NoFrame)
-        self.tableSalidas.setShowGrid(False)
-        self.tableSalidas.setWordWrap(True)
-        self.tableSalidas.setCornerButtonEnabled(True)
-        self.tableSalidas.setColumnCount(4)
-        self.tableSalidas.horizontalHeader().setCascadingSectionResizes(False)
-        self.tableSalidas.horizontalHeader().setProperty("showSortIndicator", False)
-        self.tableSalidas.horizontalHeader().setStretchLastSection(True)
-        self.tableSalidas.verticalHeader().setVisible(False)
-        self.tableSalidas.verticalHeader().setHighlightSections(True)
 
         self.verticalLayout_5.addWidget(self.tableSalidas)
 
@@ -770,22 +740,20 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addWidget(self.label_8)
 
-        self.tableWidget = QTableWidget(self.frame_19)
-        if (self.tableWidget.columnCount() < 4):
-            self.tableWidget.setColumnCount(4)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem10)
-        __qtablewidgetitem11 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem11)
-        __qtablewidgetitem12 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem12)
-        self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setFrameShape(QFrame.NoFrame)
-        self.tableWidget.setLineWidth(0)
+        self.tablaHoras = QTableWidget(self.frame_19)
+        if (self.tablaHoras.columnCount() < 3):
+            self.tablaHoras.setColumnCount(3)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.tablaHoras.setHorizontalHeaderItem(0, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.tablaHoras.setHorizontalHeaderItem(1, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.tablaHoras.setHorizontalHeaderItem(2, __qtablewidgetitem8)
+        self.tablaHoras.setObjectName(u"tablaHoras")
+        self.tablaHoras.setFrameShape(QFrame.NoFrame)
+        self.tablaHoras.setLineWidth(0)
 
-        self.verticalLayout_12.addWidget(self.tableWidget)
+        self.verticalLayout_12.addWidget(self.tablaHoras)
 
 
         self.verticalLayout_10.addWidget(self.frame_19)
@@ -891,19 +859,17 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_14.addWidget(self.label_9)
 
-        self.tableWidget_2 = QTableWidget(self.frame_21)
-        if (self.tableWidget_2.columnCount() < 3):
-            self.tableWidget_2.setColumnCount(3)
-        __qtablewidgetitem13 = QTableWidgetItem()
-        self.tableWidget_2.setHorizontalHeaderItem(0, __qtablewidgetitem13)
-        __qtablewidgetitem14 = QTableWidgetItem()
-        self.tableWidget_2.setHorizontalHeaderItem(1, __qtablewidgetitem14)
-        __qtablewidgetitem15 = QTableWidgetItem()
-        self.tableWidget_2.setHorizontalHeaderItem(2, __qtablewidgetitem15)
-        self.tableWidget_2.setObjectName(u"tableWidget_2")
-        self.tableWidget_2.setFrameShape(QFrame.NoFrame)
+        self.tablaDias = QTableWidget(self.frame_21)
+        if (self.tablaDias.columnCount() < 2):
+            self.tablaDias.setColumnCount(2)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.tablaDias.setHorizontalHeaderItem(0, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.tablaDias.setHorizontalHeaderItem(1, __qtablewidgetitem10)
+        self.tablaDias.setObjectName(u"tablaDias")
+        self.tablaDias.setFrameShape(QFrame.NoFrame)
 
-        self.verticalLayout_14.addWidget(self.tableWidget_2)
+        self.verticalLayout_14.addWidget(self.tablaDias)
 
 
         self.verticalLayout_9.addWidget(self.frame_21)
@@ -958,24 +924,18 @@ class Ui_MainWindow(object):
         self.registrar_btn.setText(QCoreApplication.translate("MainWindow", u"REGISTRAR", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Marcaciones de Ingreso", None))
         ___qtablewidgetitem = self.tableIngresos.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"#", None));
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
         ___qtablewidgetitem1 = self.tableIngresos.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Hora", None));
         ___qtablewidgetitem2 = self.tableIngresos.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Hora", None));
-        ___qtablewidgetitem3 = self.tableIngresos.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Comentario", None));
-        ___qtablewidgetitem4 = self.tableIngresos.verticalHeaderItem(0)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"1", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Comentario", None));
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Marcaciones de Salida", None))
-        ___qtablewidgetitem5 = self.tableSalidas.horizontalHeaderItem(0)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"#", None));
-        ___qtablewidgetitem6 = self.tableSalidas.horizontalHeaderItem(1)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
-        ___qtablewidgetitem7 = self.tableSalidas.horizontalHeaderItem(2)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Hora", None));
-        ___qtablewidgetitem8 = self.tableSalidas.horizontalHeaderItem(3)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Comentario", None));
+        ___qtablewidgetitem3 = self.tableSalidas.horizontalHeaderItem(0)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
+        ___qtablewidgetitem4 = self.tableSalidas.horizontalHeaderItem(1)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Hora", None));
+        ___qtablewidgetitem5 = self.tableSalidas.horizontalHeaderItem(2)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Comentario", None));
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Configuracion de datos personales", None))
         self.btnNames.setText(QCoreApplication.translate("MainWindow", u"ACTUALIZAR", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"Apellidos:", None))
@@ -987,24 +947,20 @@ class Ui_MainWindow(object):
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"Hora de Reingreso", None))
         self.btnHorasPermiso.setText(QCoreApplication.translate("MainWindow", u"REGISTRAR", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Tabla Horas Permiso", None))
-        ___qtablewidgetitem9 = self.tableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"#", None));
-        ___qtablewidgetitem10 = self.tableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Salida", None));
-        ___qtablewidgetitem11 = self.tableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"Reingreso", None));
-        ___qtablewidgetitem12 = self.tableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Motivo", None));
+        ___qtablewidgetitem6 = self.tablaHoras.horizontalHeaderItem(0)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Salida", None));
+        ___qtablewidgetitem7 = self.tablaHoras.horizontalHeaderItem(1)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Reingreso", None));
+        ___qtablewidgetitem8 = self.tablaHoras.horizontalHeaderItem(2)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Motivo", None));
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"Dia:", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"Registre el Dia:", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"Motivo:", None))
         self.btnDia.setText(QCoreApplication.translate("MainWindow", u"REGISTRAR", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Tabla Dias Permiso", None))
-        ___qtablewidgetitem13 = self.tableWidget_2.horizontalHeaderItem(0)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"#", None));
-        ___qtablewidgetitem14 = self.tableWidget_2.horizontalHeaderItem(1)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
-        ___qtablewidgetitem15 = self.tableWidget_2.horizontalHeaderItem(2)
-        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Motivo", None));
+        ___qtablewidgetitem9 = self.tablaDias.horizontalHeaderItem(0)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
+        ___qtablewidgetitem10 = self.tablaDias.horizontalHeaderItem(1)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Motivo", None));
     # retranslateUi
 

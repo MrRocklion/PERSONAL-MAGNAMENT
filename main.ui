@@ -746,49 +746,6 @@ border-radius:10px;</string>
                           </item>
                           <item>
                            <widget class="QTableWidget" name="tableIngresos">
-                            <property name="frameShape">
-                             <enum>QFrame::NoFrame</enum>
-                            </property>
-                            <property name="showGrid">
-                             <bool>false</bool>
-                            </property>
-                            <property name="wordWrap">
-                             <bool>true</bool>
-                            </property>
-                            <property name="cornerButtonEnabled">
-                             <bool>true</bool>
-                            </property>
-                            <property name="columnCount">
-                             <number>4</number>
-                            </property>
-                            <attribute name="horizontalHeaderCascadingSectionResizes">
-                             <bool>false</bool>
-                            </attribute>
-                            <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-                             <bool>false</bool>
-                            </attribute>
-                            <attribute name="horizontalHeaderStretchLastSection">
-                             <bool>true</bool>
-                            </attribute>
-                            <attribute name="verticalHeaderVisible">
-                             <bool>false</bool>
-                            </attribute>
-                            <attribute name="verticalHeaderHighlightSections">
-                             <bool>true</bool>
-                            </attribute>
-                            <row>
-                             <property name="text">
-                              <string>1</string>
-                             </property>
-                            </row>
-                            <column>
-                             <property name="text">
-                              <string>#</string>
-                             </property>
-                             <property name="textAlignment">
-                              <set>AlignLeading|AlignVCenter</set>
-                             </property>
-                            </column>
                             <column>
                              <property name="text">
                               <string>Fecha</string>
@@ -848,44 +805,6 @@ border-radius:10px;</string>
                           </item>
                           <item>
                            <widget class="QTableWidget" name="tableSalidas">
-                            <property name="frameShape">
-                             <enum>QFrame::NoFrame</enum>
-                            </property>
-                            <property name="showGrid">
-                             <bool>false</bool>
-                            </property>
-                            <property name="wordWrap">
-                             <bool>true</bool>
-                            </property>
-                            <property name="cornerButtonEnabled">
-                             <bool>true</bool>
-                            </property>
-                            <property name="columnCount">
-                             <number>4</number>
-                            </property>
-                            <attribute name="horizontalHeaderCascadingSectionResizes">
-                             <bool>false</bool>
-                            </attribute>
-                            <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-                             <bool>false</bool>
-                            </attribute>
-                            <attribute name="horizontalHeaderStretchLastSection">
-                             <bool>true</bool>
-                            </attribute>
-                            <attribute name="verticalHeaderVisible">
-                             <bool>false</bool>
-                            </attribute>
-                            <attribute name="verticalHeaderHighlightSections">
-                             <bool>true</bool>
-                            </attribute>
-                            <column>
-                             <property name="text">
-                              <string>#</string>
-                             </property>
-                             <property name="textAlignment">
-                              <set>AlignLeading|AlignVCenter</set>
-                             </property>
-                            </column>
                             <column>
                              <property name="text">
                               <string>Fecha</string>
@@ -1399,18 +1318,13 @@ color:white
                            </widget>
                           </item>
                           <item>
-                           <widget class="QTableWidget" name="tableWidget">
+                           <widget class="QTableWidget" name="tablaHoras">
                             <property name="frameShape">
                              <enum>QFrame::NoFrame</enum>
                             </property>
                             <property name="lineWidth">
                              <number>0</number>
                             </property>
-                            <column>
-                             <property name="text">
-                              <string>#</string>
-                             </property>
-                            </column>
                             <column>
                              <property name="text">
                               <string>Salida</string>
@@ -1618,15 +1532,10 @@ color:white
                            </widget>
                           </item>
                           <item>
-                           <widget class="QTableWidget" name="tableWidget_2">
+                           <widget class="QTableWidget" name="tablaDias">
                             <property name="frameShape">
                              <enum>QFrame::NoFrame</enum>
                             </property>
-                            <column>
-                             <property name="text">
-                              <string>#</string>
-                             </property>
-                            </column>
                             <column>
                              <property name="text">
                               <string>Fecha</string>
