@@ -1,10 +1,6 @@
 import sys
-import rc_icons
 import pandas as pd
-import requests
-from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QApplication,QMessageBox,QTableWidgetItem,QFileDialog,QMainWindow
-from PySide6.QtCore import QFile, QIODevice
 from PySide6.QtGui  import QIcon
 from getmac import get_mac_address as gma
 from datetime import datetime
@@ -50,9 +46,14 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowIcon(QIcon('ico.ico'))
+        #variables de inicio
+      
+        #botones para cambiar de vista
         self.ui.dash_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.DashBoardView))
         self.ui.config_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.ConfigView))
         self.ui.report_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.ReportView))
+        self.ui.extras_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.PermisosView))
         self.ui.btnExcel.clicked.connect(lambda: self.generarExcel())
         self.ui.btnNames.clicked.connect(lambda: self.updateNames())
         self.ui.macLabel.setText(user_mac)
@@ -62,6 +63,9 @@ class MainWindow(QMainWindow):
         self.ui.nameTxt.setText(user_data['nombre'])
         self.ui.exit_btn.clicked.connect(lambda: sys.exit(-1) )
         self.ui.registrar_btn.clicked.connect(lambda: self.registrar_fecha())
+        #botnes de la vista dias y horas permiso
+        self.ui.btnDia.clicked.connect(lambda: self.RegistrarDiasPermiso())
+        self.ui.btnHorasPermiso.clicked.connect(lambda: self.RegistrarHorasPermiso())
         self.ui.tableIngresos.setColumnWidth(0,20)
         self.ui.tableSalidas.setColumnWidth(0, 20)
         self.mapTablaIngresos(user_ingresos)
@@ -128,12 +132,12 @@ class MainWindow(QMainWindow):
             else:
                 users_salidas.insert(0, data_firebase)
                 estructure_firebase = {firebase_db:users_salidas}
-                self.mapTableSalidas(users_salidas)
-            try:
-                doc_ref = db.collection(u'empleados').document(mac)
-                doc_ref.update(estructure_firebase)
-            except:
-                print("error al enviar datos")
+                flag = self.updateFirebase(estructure_firebase)
+                if flag:
+                    self.mapTableSalidas(users_salidas)
+                else: 
+                    pass
+          
             self.ui.comentario.setText("")
 
 
@@ -170,6 +174,29 @@ class MainWindow(QMainWindow):
                 print(u'No such document!')
         except:
             QMessageBox.critical(None,'Error!',"Algo sucedio mal intente nuevamente!", QMessageBox.Abort)
+    def RegistrarHorasPermiso(self):
+        motivo_hora = self.ui.motivoHora.text()
+        hora_salida = self.ui.timeSalida.time()
+        hora_reingreso  = self.ui.timeReingreso.time()
+        time_formated_salida = hora_salida.toString(self.ui.timeSalida.displayFormat())
+        time_formated_re = hora_reingreso.toString(self.ui.timeReingreso.displayFormat())
+        newHoraPermiso = {'hora_salida':time_formated_salida,'hora_reingreso':time_formated_re,'motivo':motivo_hora}
+
+    def RegistrarDiasPermiso(self):
+        motivo_dia = self.ui.motivoHora.text()
+        dia = self.ui.timeDia.date()
+        time_formated_dia = dia.toString(self.ui.timeDia.displayFormat())
+        newDiaPermiso = {'dia':time_formated_dia,'motivo':motivo_dia}
+
+    def updateFirebase(self,datos):
+        try:
+            doc_ref = db.collection(u'empleados').document(user_mac)
+            doc_ref.update(datos)
+            return True
+        except:
+            QMessageBox.critical(None,'Error!',"Algo sucedio mal intente nuevamente!", QMessageBox.Abort)
+            return False
+
        
 if __name__ == "__main__":
     app = QApplication(sys.argv)
