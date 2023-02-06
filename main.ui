@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>755</width>
+    <width>764</width>
     <height>449</height>
    </rect>
   </property>
@@ -202,6 +202,36 @@ QPushButton:pressed{
               </widget>
              </item>
              <item>
+              <widget class="QPushButton" name="extras_btn">
+               <property name="styleSheet">
+                <string notr="true">QPushButton:hover{
+
+	border-radius:0px;
+	background-color: rgb(52, 73, 94);
+}
+
+QPushButton:pressed{
+	border-radius:0px;
+	background-color: rgb(133, 146, 158);
+}
+</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/iconos/icons/extra.svg</normaloff>:/iconos/icons/extra.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>34</width>
+                 <height>34</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QPushButton" name="almuerzo_btn">
                <property name="text">
                 <string/>
@@ -239,36 +269,6 @@ QPushButton:pressed{
                <property name="icon">
                 <iconset resource="icons.qrc">
                  <normaloff>:/iconos/icons/document.svg</normaloff>:/iconos/icons/document.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>34</width>
-                 <height>34</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="extras_btn">
-               <property name="styleSheet">
-                <string notr="true">QPushButton:hover{
-
-	border-radius:0px;
-	background-color: rgb(52, 73, 94);
-}
-
-QPushButton:pressed{
-	border-radius:0px;
-	background-color: rgb(133, 146, 158);
-}
-</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="icons.qrc">
-                 <normaloff>:/iconos/icons/extra.svg</normaloff>:/iconos/icons/extra.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -1538,6 +1538,12 @@ color:white
                             </item>
                             <item row="1" column="1">
                              <widget class="QLineEdit" name="motivoHora">
+                              <property name="minimumSize">
+                               <size>
+                                <width>0</width>
+                                <height>25</height>
+                               </size>
+                              </property>
                               <property name="styleSheet">
                                <string notr="true">background-color: rgb(255, 255, 255);
 border:1px solid;
@@ -1772,7 +1778,7 @@ color:white
                               </property>
                               <property name="dateTime">
                                <datetime>
-                                <hour>5</hour>
+                                <hour>10</hour>
                                 <minute>0</minute>
                                 <second>0</second>
                                 <year>2023</year>
@@ -1784,6 +1790,12 @@ color:white
                             </item>
                             <item row="1" column="1" colspan="2">
                              <widget class="QLineEdit" name="motivoDia">
+                              <property name="minimumSize">
+                               <size>
+                                <width>0</width>
+                                <height>25</height>
+                               </size>
+                              </property>
                               <property name="styleSheet">
                                <string notr="true">background-color: rgb(255, 255, 255);
 border:1px solid;

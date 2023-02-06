@@ -240,19 +240,28 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(None,'Error!',"Algo sucedio mal intente nuevamente!", QMessageBox.Abort)
     def RegistrarHorasPermiso(self):
         motivo_hora = self.ui.motivoHora.text()
+        if motivo_hora == "":
+            motivo_hora = "ninguno"
         hora_salida = self.ui.timeSalida.time()
         hora_reingreso  = self.ui.timeReingreso.time()
         time_formated_salida = hora_salida.toString(self.ui.timeSalida.displayFormat())
         time_formated_re = hora_reingreso.toString(self.ui.timeReingreso.displayFormat())
         newHoraPermiso = {'hora_salida':time_formated_salida,'hora_reingreso':time_formated_re,'motivo':motivo_hora,'id':str(uuid.uuid4())}
-        users_horasp.insert(0,newHoraPermiso)
-        estructure_firebase = {'horas_permiso':users_horasp}
-        flag = self.updateFirebase(estructure_firebase)
-        if flag:
-            self.mapTableHorasP(users_horasp)
-            self.ui.motivoHora.setText("")
-        else: 
-            pass
+        msgBox = QMessageBox()
+        msgBox.setText("Se va a registrar el dia como {}-{}".format(newHoraPermiso['hora_salida'],newHoraPermiso['hora_reingreso']))
+        msgBox.setInformativeText("Estas seguro de continuar?")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.setDefaultButton(QMessageBox.Cancel)
+        ret = msgBox.exec()
+        if ret == QMessageBox.Ok:
+            users_horasp.insert(0,newHoraPermiso)
+            estructure_firebase = {'horas_permiso':users_horasp}
+            flag = self.updateFirebase(estructure_firebase)
+            if flag:
+                self.mapTableHorasP(users_horasp)
+                self.ui.motivoHora.setText("")
+            else: 
+                pass
         
 
     def RegistrarDiasPermiso(self):
@@ -261,15 +270,22 @@ class MainWindow(QMainWindow):
         time_formated_dia = dia.toString(self.ui.timeDia.displayFormat())
         if motivo_dia == "":
             motivo_dia = "ninguno"
-        newDiaPermiso = {'dia':time_formated_dia,'motivo':motivo_dia}
-        users_diasp.insert(0,newDiaPermiso)
-        estructure_firebase = {'dias_permiso':users_diasp}
-        flag = self.updateFirebase(estructure_firebase)
-        if flag:
-            self.mapTableDiasP(users_diasp)
-            self.ui.motivoDia.setText("")
-        else: 
-            pass
+        newDiaPermiso = {'dia':time_formated_dia,'motivo':motivo_dia,'id':str(uuid.uuid4())}
+        msgBox = QMessageBox()
+        msgBox.setText("Se va a registrar el dia como {}-{}".format(newDiaPermiso['dia'],newDiaPermiso['motivo']))
+        msgBox.setInformativeText("Estas seguro de continuar?")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.setDefaultButton(QMessageBox.Cancel)
+        ret = msgBox.exec()
+        if ret == QMessageBox.Ok:
+            users_diasp.insert(0,newDiaPermiso)
+            estructure_firebase = {'dias_permiso':users_diasp}
+            flag = self.updateFirebase(estructure_firebase)
+            if flag:
+                self.mapTableDiasP(users_diasp)
+                self.ui.motivoDia.setText("")
+            else: 
+                pass
     def registrarAlmuerzo(self):
         ingreso = self.ui.radIngreso_2.isChecked()
         if ingreso:

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainkCLJNR.ui'
+## Form generated from reading UI file 'mainJqmgCg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.0
 ##
@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(755, 449)
+        MainWindow.resize(764, 449)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
@@ -106,11 +106,31 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.dash_btn)
 
+        self.extras_btn = QPushButton(self.frame_4)
+        self.extras_btn.setObjectName(u"extras_btn")
+        self.extras_btn.setStyleSheet(u"QPushButton:hover{\n"
+"\n"
+"	border-radius:0px;\n"
+"	background-color: rgb(52, 73, 94);\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"	border-radius:0px;\n"
+"	background-color: rgb(133, 146, 158);\n"
+"}\n"
+"")
+        icon1 = QIcon()
+        icon1.addFile(u":/iconos/icons/extra.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.extras_btn.setIcon(icon1)
+        self.extras_btn.setIconSize(QSize(34, 34))
+
+        self.verticalLayout_3.addWidget(self.extras_btn)
+
         self.almuerzo_btn = QPushButton(self.frame_4)
         self.almuerzo_btn.setObjectName(u"almuerzo_btn")
-        icon1 = QIcon()
-        icon1.addFile(u":/iconos/icons/almuerzo.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.almuerzo_btn.setIcon(icon1)
+        icon2 = QIcon()
+        icon2.addFile(u":/iconos/icons/almuerzo.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.almuerzo_btn.setIcon(icon2)
         self.almuerzo_btn.setIconSize(QSize(34, 34))
 
         self.verticalLayout_3.addWidget(self.almuerzo_btn)
@@ -128,32 +148,12 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "")
-        icon2 = QIcon()
-        icon2.addFile(u":/iconos/icons/document.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.report_btn.setIcon(icon2)
+        icon3 = QIcon()
+        icon3.addFile(u":/iconos/icons/document.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.report_btn.setIcon(icon3)
         self.report_btn.setIconSize(QSize(34, 34))
 
         self.verticalLayout_3.addWidget(self.report_btn)
-
-        self.extras_btn = QPushButton(self.frame_4)
-        self.extras_btn.setObjectName(u"extras_btn")
-        self.extras_btn.setStyleSheet(u"QPushButton:hover{\n"
-"\n"
-"	border-radius:0px;\n"
-"	background-color: rgb(52, 73, 94);\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"	border-radius:0px;\n"
-"	background-color: rgb(133, 146, 158);\n"
-"}\n"
-"")
-        icon3 = QIcon()
-        icon3.addFile(u":/iconos/icons/extra.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.extras_btn.setIcon(icon3)
-        self.extras_btn.setIconSize(QSize(34, 34))
-
-        self.verticalLayout_3.addWidget(self.extras_btn)
 
         self.config_btn = QPushButton(self.frame_4)
         self.config_btn.setObjectName(u"config_btn")
@@ -855,6 +855,7 @@ class Ui_MainWindow(object):
 
         self.motivoHora = QLineEdit(self.frame_18)
         self.motivoHora.setObjectName(u"motivoHora")
+        self.motivoHora.setMinimumSize(QSize(0, 25))
         self.motivoHora.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
 "border:1px solid;\n"
 "border-radius:4px;")
@@ -984,12 +985,13 @@ class Ui_MainWindow(object):
         self.timeDia = QDateEdit(self.frame_20)
         self.timeDia.setObjectName(u"timeDia")
         self.timeDia.setMinimumSize(QSize(0, 30))
-        self.timeDia.setDateTime(QDateTime(QDate(2023, 2, 5), QTime(5, 0, 0)))
+        self.timeDia.setDateTime(QDateTime(QDate(2023, 2, 5), QTime(10, 0, 0)))
 
         self.gridLayout_7.addWidget(self.timeDia, 2, 1, 1, 2)
 
         self.motivoDia = QLineEdit(self.frame_20)
         self.motivoDia.setObjectName(u"motivoDia")
+        self.motivoDia.setMinimumSize(QSize(0, 25))
         self.motivoDia.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
 "border:1px solid;\n"
 "border-radius:4px;")
@@ -1098,9 +1100,9 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Panel de Administracion", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Software de marcacion hitraffic", None))
         self.dash_btn.setText("")
+        self.extras_btn.setText("")
         self.almuerzo_btn.setText("")
         self.report_btn.setText("")
-        self.extras_btn.setText("")
         self.config_btn.setText("")
         self.exit_btn.setText("")
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Apellidos:", None))
