@@ -20,6 +20,8 @@ user_ingresos = []
 users_salidas = []
 users_horasp = []
 users_diasp = []
+users_almuerzosI = []
+users_almuerzosS = []
 doc_ref = db.collection(u'empleados').document(user_mac)
 
 try:
@@ -30,7 +32,8 @@ try:
         users_salidas = user_data["salidas"]
         users_horasp = user_data["horas_permiso"]
         users_diasp = user_data["dias_permiso"]
-       
+        users_almuerzosI = user_data["almuerzo_ingresos"]
+        users_almuerzosS = user_data["almuerzo_salidas"]
     else:
         print(u'No such document!')
         doc_ref = db.collection(u'empleados').document(user_mac)
@@ -40,11 +43,13 @@ try:
         u'ingresos': [],
         u'salidas': [],
         u'horas_permiso': [],
-        u'dias_permiso': []
+        u'dias_permiso': [],
+        u'almuerzo_salidas': [],
+        u'almuerzo_ingresos': []
         }
         doc_ref.set(user_data)
-except:
-    print("error")
+except Exception as e:
+    print(e)
 
    
 class MainWindow(QMainWindow):
@@ -60,6 +65,7 @@ class MainWindow(QMainWindow):
         self.ui.config_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.ConfigView))
         self.ui.report_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.ReportView))
         self.ui.extras_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.PermisosView))
+        self.ui.almuerzo_btn.clicked.connect(lambda:self.ui.stackedWidget.setCurrentWidget(self.ui.AlmuerzosView))
         self.ui.btnExcel.clicked.connect(lambda: self.generarExcel())
         self.ui.btnNames.clicked.connect(lambda: self.updateNames())
         self.ui.macLabel.setText(user_mac)
@@ -68,14 +74,19 @@ class MainWindow(QMainWindow):
         self.ui.lastTxt.setText(user_data['apellido'])
         self.ui.nameTxt.setText(user_data['nombre'])
         self.ui.exit_btn.clicked.connect(lambda: sys.exit(-1) )
+        #botones para registrar ingresos y salidas
         self.ui.registrar_btn.clicked.connect(lambda: self.registrar_fecha())
+        self.ui.registrar_btn_2.clicked.connect(lambda: self.registrarAlmuerzo())
         #botnes de la vista dias y horas permiso
         self.ui.btnDia.clicked.connect(lambda: self.RegistrarDiasPermiso())
         self.ui.btnHorasPermiso.clicked.connect(lambda: self.RegistrarHorasPermiso())
+        #funciones para mapear
         self.mapTablaIngresos(user_ingresos)
         self.mapTableSalidas(users_salidas)
         self.mapTableDiasP(users_diasp)
         self.mapTableHorasP(users_horasp)
+        self.mapTablaIngresosAlmuerzo(users_almuerzosI)
+        self.mapTableSalidasAlmuerzos(users_almuerzosS)
     def mapTableDiasP(self,data):
         self.ui.tablaDias.clear()
         columns = ['Fecha','Motivo']
@@ -108,6 +119,17 @@ class MainWindow(QMainWindow):
             self.ui.tableIngresos.setItem(row, 1, QTableWidgetItem(str(e['hora'])))
             self.ui.tableIngresos.setItem(row, 2, QTableWidgetItem(str(e['comentario'])))
             row += 1
+    def mapTablaIngresosAlmuerzo(self,data):
+        self.ui.tableIngresos_2.clear()
+        columns = ['Fecha','Hora','Comentario']
+        self.ui.tableIngresos_2.setHorizontalHeaderLabels(columns)
+        row = 0
+        for e in data:
+            self.ui.tableIngresos_2.insertRow(row)
+            self.ui.tableIngresos_2.setItem(row, 0, QTableWidgetItem(str(e['fecha'])))
+            self.ui.tableIngresos_2.setItem(row, 1, QTableWidgetItem(str(e['hora'])))
+            self.ui.tableIngresos_2.setItem(row, 2, QTableWidgetItem(str(e['comentario'])))
+            row += 1
     def updateNames(self):
         lastaname = self.ui.lastTxt.text()
         name = self.ui.nameTxt.text()
@@ -126,6 +148,17 @@ class MainWindow(QMainWindow):
             self.ui.tableSalidas.setItem(row, 0, QTableWidgetItem(str(e['fecha'])))
             self.ui.tableSalidas.setItem(row, 1, QTableWidgetItem(str(e['hora'])))
             self.ui.tableSalidas.setItem(row, 2, QTableWidgetItem(str(e['comentario'])))
+            row += 1
+    def mapTableSalidasAlmuerzos(self,data):
+        self.ui.tableSalidas_2.clear()
+        columns = ['Fecha','Hora','Comentario']
+        self.ui.tableSalidas_2.setHorizontalHeaderLabels(columns)
+        row = 0
+        for e in data:
+            self.ui.tableSalidas_2.insertRow(row)
+            self.ui.tableSalidas_2.setItem(row, 0, QTableWidgetItem(str(e['fecha'])))
+            self.ui.tableSalidas_2.setItem(row, 1, QTableWidgetItem(str(e['hora'])))
+            self.ui.tableSalidas_2.setItem(row, 2, QTableWidgetItem(str(e['comentario'])))
             row += 1
     def registrar_fecha(self):
         ingreso = self.ui.radIngreso.isChecked()
@@ -147,7 +180,8 @@ class MainWindow(QMainWindow):
             hora = str(tiempo.hour)+':'+str(tiempo.minute)+':'+str(tiempo.second)
             mac = gma()
             comentario = self.ui.comentario.text()
-
+            if comentario == "":
+                comentario = "ninguno"
             data_firebase = {"fecha":fecha,"hora":hora,"mac":mac,"comentario":comentario,"tipo":firebase_puntero,'id':str(uuid.uuid4())}
             if ingreso:
                 user_ingresos.insert(0, data_firebase)
@@ -225,6 +259,8 @@ class MainWindow(QMainWindow):
         motivo_dia = self.ui.motivoDia.text()
         dia = self.ui.timeDia.date()
         time_formated_dia = dia.toString(self.ui.timeDia.displayFormat())
+        if motivo_dia == "":
+            motivo_dia = "ninguno"
         newDiaPermiso = {'dia':time_formated_dia,'motivo':motivo_dia}
         users_diasp.insert(0,newDiaPermiso)
         estructure_firebase = {'dias_permiso':users_diasp}
@@ -234,7 +270,56 @@ class MainWindow(QMainWindow):
             self.ui.motivoDia.setText("")
         else: 
             pass
+    def registrarAlmuerzo(self):
+        ingreso = self.ui.radIngreso_2.isChecked()
+        if ingreso:
+            firebase_puntero = "ingreso"
+            firebase_db = "almuerzo_ingresos"
+        else:
+            firebase_puntero = "salida"
+            firebase_db = "almuerzo_salidas"
+        msgBox = QMessageBox()
+        msgBox.setText("Se va a registrar el almuerzo como {}".format(firebase_puntero))
+        msgBox.setInformativeText("Estas seguro de continuar?")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.setDefaultButton(QMessageBox.Cancel)
+        ret = msgBox.exec()
+        if ret == QMessageBox.Ok:
+            tiempo = datetime.today()
+            fecha = str(tiempo.year)+'-'+str(tiempo.month)+'-'+str(tiempo.day)
+            hora = str(tiempo.hour)+':'+str(tiempo.minute)+':'+str(tiempo.second)
+            mac = gma()
+            comentario = self.ui.comentarioAlmuerzo.text()
+            if comentario == "":
+                comentario = "ninguno"
+          
+                
 
+            data_firebase = {"fecha":fecha,"hora":hora,"mac":mac,"comentario":comentario,"tipo":firebase_puntero,'id':str(uuid.uuid4())}
+            if ingreso:
+                users_almuerzosI.insert(0, data_firebase)
+                print(user_ingresos)
+                estructure_firebase = {firebase_db:users_almuerzosI}
+                flag = self.updateFirebase(estructure_firebase)
+                if flag:
+                    self.mapTablaIngresosAlmuerzo(users_almuerzosI)
+                else: 
+                    pass
+                
+            else:
+                users_almuerzosS.insert(0, data_firebase)
+                estructure_firebase = {firebase_db:users_almuerzosS}
+                flag = self.updateFirebase(estructure_firebase)
+                if flag:
+                    self.mapTableSalidasAlmuerzos(users_almuerzosS)
+                else: 
+                    pass
+          
+            self.ui.comentario.setText("")
+
+
+        else:
+            print("se cancelo")
     def updateFirebase(self,datos):
         try:
             doc_ref = db.collection(u'empleados').document(user_mac)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainLLDYgk.ui'
+## Form generated from reading UI file 'mainkCLJNR.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.0
 ##
@@ -106,6 +106,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.dash_btn)
 
+        self.almuerzo_btn = QPushButton(self.frame_4)
+        self.almuerzo_btn.setObjectName(u"almuerzo_btn")
+        icon1 = QIcon()
+        icon1.addFile(u":/iconos/icons/almuerzo.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.almuerzo_btn.setIcon(icon1)
+        self.almuerzo_btn.setIconSize(QSize(34, 34))
+
+        self.verticalLayout_3.addWidget(self.almuerzo_btn)
+
         self.report_btn = QPushButton(self.frame_4)
         self.report_btn.setObjectName(u"report_btn")
         self.report_btn.setStyleSheet(u"QPushButton:hover{\n"
@@ -119,9 +128,9 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "")
-        icon1 = QIcon()
-        icon1.addFile(u":/iconos/icons/document.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.report_btn.setIcon(icon1)
+        icon2 = QIcon()
+        icon2.addFile(u":/iconos/icons/document.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.report_btn.setIcon(icon2)
         self.report_btn.setIconSize(QSize(34, 34))
 
         self.verticalLayout_3.addWidget(self.report_btn)
@@ -139,9 +148,9 @@ class Ui_MainWindow(object):
 "	background-color: rgb(133, 146, 158);\n"
 "}\n"
 "")
-        icon2 = QIcon()
-        icon2.addFile(u":/iconos/icons/extra.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.extras_btn.setIcon(icon2)
+        icon3 = QIcon()
+        icon3.addFile(u":/iconos/icons/extra.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.extras_btn.setIcon(icon3)
         self.extras_btn.setIconSize(QSize(34, 34))
 
         self.verticalLayout_3.addWidget(self.extras_btn)
@@ -159,9 +168,9 @@ class Ui_MainWindow(object):
 "	background-color: rgb(133, 146, 158);\n"
 "}\n"
 "")
-        icon3 = QIcon()
-        icon3.addFile(u":/iconos/icons/settings.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.config_btn.setIcon(icon3)
+        icon4 = QIcon()
+        icon4.addFile(u":/iconos/icons/settings.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.config_btn.setIcon(icon4)
         self.config_btn.setIconSize(QSize(34, 34))
 
         self.verticalLayout_3.addWidget(self.config_btn)
@@ -183,9 +192,9 @@ class Ui_MainWindow(object):
 "	background-color: rgb(133, 146, 158);\n"
 "}\n"
 "")
-        icon4 = QIcon()
-        icon4.addFile(u":/iconos/icons/logout.svg", QSize(), QIcon.Normal, QIcon.On)
-        self.exit_btn.setIcon(icon4)
+        icon5 = QIcon()
+        icon5.addFile(u":/iconos/icons/logout.svg", QSize(), QIcon.Normal, QIcon.On)
+        self.exit_btn.setIcon(icon5)
         self.exit_btn.setIconSize(QSize(34, 34))
 
         self.verticalLayout_3.addWidget(self.exit_btn)
@@ -464,6 +473,188 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.addWidget(self.frame_6)
 
         self.stackedWidget.addWidget(self.DashBoardView)
+        self.AlmuerzosView = QWidget()
+        self.AlmuerzosView.setObjectName(u"AlmuerzosView")
+        self.verticalLayout_18 = QVBoxLayout(self.AlmuerzosView)
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+        self.frame_22 = QFrame(self.AlmuerzosView)
+        self.frame_22.setObjectName(u"frame_22")
+        self.frame_22.setFrameShape(QFrame.StyledPanel)
+        self.frame_22.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_15 = QVBoxLayout(self.frame_22)
+        self.verticalLayout_15.setSpacing(6)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
+        self.frame_23 = QFrame(self.frame_22)
+        self.frame_23.setObjectName(u"frame_23")
+        self.frame_23.setMaximumSize(QSize(16777215, 130))
+        self.frame_23.setStyleSheet(u"")
+        self.frame_23.setFrameShape(QFrame.StyledPanel)
+        self.frame_23.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_12 = QHBoxLayout(self.frame_23)
+        self.horizontalLayout_12.setSpacing(9)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.frame_25 = QFrame(self.frame_23)
+        self.frame_25.setObjectName(u"frame_25")
+        sizePolicy.setHeightForWidth(self.frame_25.sizePolicy().hasHeightForWidth())
+        self.frame_25.setSizePolicy(sizePolicy)
+        self.frame_25.setMinimumSize(QSize(400, 0))
+        self.frame_25.setMaximumSize(QSize(1000, 110))
+        self.frame_25.setStyleSheet(u"background-color: rgb(236, 240, 241);\n"
+"border-radius:10px;")
+        self.frame_25.setFrameShape(QFrame.StyledPanel)
+        self.frame_25.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_14 = QHBoxLayout(self.frame_25)
+        self.horizontalLayout_14.setSpacing(0)
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.horizontalLayout_14.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_8 = QGridLayout()
+        self.gridLayout_8.setSpacing(0)
+        self.gridLayout_8.setObjectName(u"gridLayout_8")
+        self.label_25 = QLabel(self.frame_25)
+        self.label_25.setObjectName(u"label_25")
+
+        self.gridLayout_8.addWidget(self.label_25, 1, 0, 1, 1)
+
+        self.radIngreso_2 = QRadioButton(self.frame_25)
+        self.radIngreso_2.setObjectName(u"radIngreso_2")
+        self.radIngreso_2.setChecked(True)
+
+        self.gridLayout_8.addWidget(self.radIngreso_2, 0, 0, 1, 1)
+
+        self.radSalida_2 = QRadioButton(self.frame_25)
+        self.radSalida_2.setObjectName(u"radSalida_2")
+
+        self.gridLayout_8.addWidget(self.radSalida_2, 0, 1, 1, 1)
+
+        self.comentarioAlmuerzo = QLineEdit(self.frame_25)
+        self.comentarioAlmuerzo.setObjectName(u"comentarioAlmuerzo")
+        sizePolicy1.setHeightForWidth(self.comentarioAlmuerzo.sizePolicy().hasHeightForWidth())
+        self.comentarioAlmuerzo.setSizePolicy(sizePolicy1)
+        self.comentarioAlmuerzo.setMinimumSize(QSize(0, 30))
+        self.comentarioAlmuerzo.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border:1px solid;\n"
+"border-radius:4px;")
+
+        self.gridLayout_8.addWidget(self.comentarioAlmuerzo, 1, 1, 1, 2)
+
+        self.registrar_btn_2 = QPushButton(self.frame_25)
+        self.registrar_btn_2.setObjectName(u"registrar_btn_2")
+        self.registrar_btn_2.setMinimumSize(QSize(0, 30))
+        self.registrar_btn_2.setStyleSheet(u"QPushButton{\n"
+"background-color: rgb(88, 214, 141 );\n"
+"border-radius:3px;\n"
+"color:white\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:hover{\n"
+"border-radius:0px;\n"
+"background-color: rgb(130, 224, 170);\n"
+"border-radius:3px;\n"
+"color:white\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"	border-radius:0px;\n"
+"background-color: rgb(88, 214, 141 );\n"
+"border-radius:3px;\n"
+"color:white\n"
+"}\n"
+"\n"
+"")
+
+        self.gridLayout_8.addWidget(self.registrar_btn_2, 2, 1, 1, 2)
+
+
+        self.horizontalLayout_14.addLayout(self.gridLayout_8)
+
+
+        self.horizontalLayout_12.addWidget(self.frame_25)
+
+
+        self.verticalLayout_15.addWidget(self.frame_23)
+
+        self.frame_26 = QFrame(self.frame_22)
+        self.frame_26.setObjectName(u"frame_26")
+        self.frame_26.setMaximumSize(QSize(16777215, 241))
+        self.frame_26.setStyleSheet(u"")
+        self.frame_26.setFrameShape(QFrame.StyledPanel)
+        self.frame_26.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_15 = QHBoxLayout(self.frame_26)
+        self.horizontalLayout_15.setSpacing(9)
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.frame_27 = QFrame(self.frame_26)
+        self.frame_27.setObjectName(u"frame_27")
+        self.frame_27.setMinimumSize(QSize(328, 0))
+        self.frame_27.setStyleSheet(u"background-color: rgb(236, 240, 241);\n"
+"border-radius:10px;")
+        self.frame_27.setFrameShape(QFrame.StyledPanel)
+        self.frame_27.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_16 = QVBoxLayout(self.frame_27)
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.label_26 = QLabel(self.frame_27)
+        self.label_26.setObjectName(u"label_26")
+        self.label_26.setFont(font1)
+        self.label_26.setStyleSheet(u"font: 9pt \"Roboto\";")
+
+        self.verticalLayout_16.addWidget(self.label_26)
+
+        self.tableIngresos_2 = QTableWidget(self.frame_27)
+        if (self.tableIngresos_2.columnCount() < 3):
+            self.tableIngresos_2.setColumnCount(3)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.tableIngresos_2.setHorizontalHeaderItem(0, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.tableIngresos_2.setHorizontalHeaderItem(1, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.tableIngresos_2.setHorizontalHeaderItem(2, __qtablewidgetitem8)
+        self.tableIngresos_2.setObjectName(u"tableIngresos_2")
+
+        self.verticalLayout_16.addWidget(self.tableIngresos_2)
+
+
+        self.horizontalLayout_15.addWidget(self.frame_27)
+
+        self.frame_28 = QFrame(self.frame_26)
+        self.frame_28.setObjectName(u"frame_28")
+        self.frame_28.setMinimumSize(QSize(328, 0))
+        self.frame_28.setStyleSheet(u"background-color: rgb(236, 240, 241);\n"
+"border-radius:10px;")
+        self.frame_28.setFrameShape(QFrame.StyledPanel)
+        self.frame_28.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_17 = QVBoxLayout(self.frame_28)
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.label_27 = QLabel(self.frame_28)
+        self.label_27.setObjectName(u"label_27")
+        self.label_27.setFont(font1)
+        self.label_27.setStyleSheet(u"font: 9pt \"Roboto\";")
+
+        self.verticalLayout_17.addWidget(self.label_27)
+
+        self.tableSalidas_2 = QTableWidget(self.frame_28)
+        if (self.tableSalidas_2.columnCount() < 3):
+            self.tableSalidas_2.setColumnCount(3)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.tableSalidas_2.setHorizontalHeaderItem(0, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.tableSalidas_2.setHorizontalHeaderItem(1, __qtablewidgetitem10)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        self.tableSalidas_2.setHorizontalHeaderItem(2, __qtablewidgetitem11)
+        self.tableSalidas_2.setObjectName(u"tableSalidas_2")
+
+        self.verticalLayout_17.addWidget(self.tableSalidas_2)
+
+
+        self.horizontalLayout_15.addWidget(self.frame_28)
+
+
+        self.verticalLayout_15.addWidget(self.frame_26)
+
+
+        self.verticalLayout_18.addWidget(self.frame_22)
+
+        self.stackedWidget.addWidget(self.AlmuerzosView)
         self.ConfigView = QWidget()
         self.ConfigView.setObjectName(u"ConfigView")
         self.horizontalLayout_5 = QHBoxLayout(self.ConfigView)
@@ -743,12 +934,12 @@ class Ui_MainWindow(object):
         self.tablaHoras = QTableWidget(self.frame_19)
         if (self.tablaHoras.columnCount() < 3):
             self.tablaHoras.setColumnCount(3)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.tablaHoras.setHorizontalHeaderItem(0, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.tablaHoras.setHorizontalHeaderItem(1, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.tablaHoras.setHorizontalHeaderItem(2, __qtablewidgetitem8)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        self.tablaHoras.setHorizontalHeaderItem(0, __qtablewidgetitem12)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.tablaHoras.setHorizontalHeaderItem(1, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.tablaHoras.setHorizontalHeaderItem(2, __qtablewidgetitem14)
         self.tablaHoras.setObjectName(u"tablaHoras")
         self.tablaHoras.setFrameShape(QFrame.NoFrame)
         self.tablaHoras.setLineWidth(0)
@@ -793,7 +984,7 @@ class Ui_MainWindow(object):
         self.timeDia = QDateEdit(self.frame_20)
         self.timeDia.setObjectName(u"timeDia")
         self.timeDia.setMinimumSize(QSize(0, 30))
-        self.timeDia.setDateTime(QDateTime(QDate(2023, 2, 5), QTime(0, 0, 0)))
+        self.timeDia.setDateTime(QDateTime(QDate(2023, 2, 5), QTime(5, 0, 0)))
 
         self.gridLayout_7.addWidget(self.timeDia, 2, 1, 1, 2)
 
@@ -862,10 +1053,10 @@ class Ui_MainWindow(object):
         self.tablaDias = QTableWidget(self.frame_21)
         if (self.tablaDias.columnCount() < 2):
             self.tablaDias.setColumnCount(2)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.tablaDias.setHorizontalHeaderItem(0, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.tablaDias.setHorizontalHeaderItem(1, __qtablewidgetitem10)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.tablaDias.setHorizontalHeaderItem(0, __qtablewidgetitem15)
+        __qtablewidgetitem16 = QTableWidgetItem()
+        self.tablaDias.setHorizontalHeaderItem(1, __qtablewidgetitem16)
         self.tablaDias.setObjectName(u"tablaDias")
         self.tablaDias.setFrameShape(QFrame.NoFrame)
 
@@ -907,6 +1098,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Panel de Administracion", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Software de marcacion hitraffic", None))
         self.dash_btn.setText("")
+        self.almuerzo_btn.setText("")
         self.report_btn.setText("")
         self.extras_btn.setText("")
         self.config_btn.setText("")
@@ -936,6 +1128,24 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Hora", None));
         ___qtablewidgetitem5 = self.tableSalidas.horizontalHeaderItem(2)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Comentario", None));
+        self.label_25.setText(QCoreApplication.translate("MainWindow", u"Comentario:    ", None))
+        self.radIngreso_2.setText(QCoreApplication.translate("MainWindow", u"Ingreso del Almuerzo         ", None))
+        self.radSalida_2.setText(QCoreApplication.translate("MainWindow", u"Salida del Almuerzo", None))
+        self.registrar_btn_2.setText(QCoreApplication.translate("MainWindow", u"REGISTRAR", None))
+        self.label_26.setText(QCoreApplication.translate("MainWindow", u"Marcaciones de Ingreso del Almuerzo", None))
+        ___qtablewidgetitem6 = self.tableIngresos_2.horizontalHeaderItem(0)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
+        ___qtablewidgetitem7 = self.tableIngresos_2.horizontalHeaderItem(1)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Hora", None));
+        ___qtablewidgetitem8 = self.tableIngresos_2.horizontalHeaderItem(2)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Comentario", None));
+        self.label_27.setText(QCoreApplication.translate("MainWindow", u"Marcaciones de Salida del Almuerzo", None))
+        ___qtablewidgetitem9 = self.tableSalidas_2.horizontalHeaderItem(0)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
+        ___qtablewidgetitem10 = self.tableSalidas_2.horizontalHeaderItem(1)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Hora", None));
+        ___qtablewidgetitem11 = self.tableSalidas_2.horizontalHeaderItem(2)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"Comentario", None));
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Configuracion de datos personales", None))
         self.btnNames.setText(QCoreApplication.translate("MainWindow", u"ACTUALIZAR", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"Apellidos:", None))
@@ -947,20 +1157,20 @@ class Ui_MainWindow(object):
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"Hora de Reingreso", None))
         self.btnHorasPermiso.setText(QCoreApplication.translate("MainWindow", u"REGISTRAR", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Tabla Horas Permiso", None))
-        ___qtablewidgetitem6 = self.tablaHoras.horizontalHeaderItem(0)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Salida", None));
-        ___qtablewidgetitem7 = self.tablaHoras.horizontalHeaderItem(1)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Reingreso", None));
-        ___qtablewidgetitem8 = self.tablaHoras.horizontalHeaderItem(2)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Motivo", None));
+        ___qtablewidgetitem12 = self.tablaHoras.horizontalHeaderItem(0)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Salida", None));
+        ___qtablewidgetitem13 = self.tablaHoras.horizontalHeaderItem(1)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Reingreso", None));
+        ___qtablewidgetitem14 = self.tablaHoras.horizontalHeaderItem(2)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Motivo", None));
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"Dia:", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"Registre el Dia:", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"Motivo:", None))
         self.btnDia.setText(QCoreApplication.translate("MainWindow", u"REGISTRAR", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Tabla Dias Permiso", None))
-        ___qtablewidgetitem9 = self.tablaDias.horizontalHeaderItem(0)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
-        ___qtablewidgetitem10 = self.tablaDias.horizontalHeaderItem(1)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Motivo", None));
+        ___qtablewidgetitem15 = self.tablaDias.horizontalHeaderItem(0)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
+        ___qtablewidgetitem16 = self.tablaDias.horizontalHeaderItem(1)
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Motivo", None));
     # retranslateUi
 
