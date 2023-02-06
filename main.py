@@ -220,8 +220,12 @@ class MainWindow(QMainWindow):
                 user_data = doc.to_dict()
                 df_ingresos = pd.DataFrame(data=user_data['ingresos'])
                 df_salidas = pd.DataFrame(data=user_data['salidas'])
-                datos_personales = {'nombres':user_data['nombre'],"apellidos":user_data['apellido'],'id':str(uuid.uuid4())}
+                datos_personales = {'nombres':user_data['nombre'],"apellidos":user_data['apellido']}
                 df_datosp = pd.DataFrame(data=datos_personales,index=[0])
+                df_almuerzosI = pd.DataFrame(data=user_data['almuerzo_ingresos'])
+                df_almuerzosS = pd.DataFrame(data=user_data['almuerzo_salidas'])
+                df_diasp = pd.DataFrame(data=user_data['dias_permiso'])
+                df_horasp = pd.DataFrame(data=user_data['horas_permiso'])
                 print(df_datosp)
                 dialog = QFileDialog().getSaveFileName(
                 caption='Save File As',
@@ -234,19 +238,25 @@ class MainWindow(QMainWindow):
                     df_ingresos.to_excel(writer, sheet_name='Ingresos')
                     df_salidas.to_excel(writer, sheet_name='Salidas')
                     df_datosp.to_excel(writer, sheet_name='Datos Personales')
+                    df_almuerzosI.to_excel(writer, sheet_name='Ingresos del Almuerzo')
+                    df_almuerzosS.to_excel(writer, sheet_name='Salidas del Almuerzo')
+                    df_diasp.to_excel(writer, sheet_name='Dias Permiso')
+                    df_horasp.to_excel(writer, sheet_name='Horas Permiso')
             else:
                 print(u'No such document!')
         except:
             QMessageBox.critical(None,'Error!',"Algo sucedio mal intente nuevamente!", QMessageBox.Abort)
     def RegistrarHorasPermiso(self):
+        tiempo = datetime.today()
         motivo_hora = self.ui.motivoHora.text()
+        fecha = str(tiempo.year)+'-'+str(tiempo.month)+'-'+str(tiempo.day)
         if motivo_hora == "":
             motivo_hora = "ninguno"
         hora_salida = self.ui.timeSalida.time()
         hora_reingreso  = self.ui.timeReingreso.time()
         time_formated_salida = hora_salida.toString(self.ui.timeSalida.displayFormat())
         time_formated_re = hora_reingreso.toString(self.ui.timeReingreso.displayFormat())
-        newHoraPermiso = {'hora_salida':time_formated_salida,'hora_reingreso':time_formated_re,'motivo':motivo_hora,'id':str(uuid.uuid4())}
+        newHoraPermiso = {'hora_salida':time_formated_salida,'fecha':fecha,'hora_reingreso':time_formated_re,'motivo':motivo_hora,'id':str(uuid.uuid4())}
         msgBox = QMessageBox()
         msgBox.setText("Se va a registrar el dia como {}-{}".format(newHoraPermiso['hora_salida'],newHoraPermiso['hora_reingreso']))
         msgBox.setInformativeText("Estas seguro de continuar?")
@@ -268,6 +278,7 @@ class MainWindow(QMainWindow):
         motivo_dia = self.ui.motivoDia.text()
         dia = self.ui.timeDia.date()
         time_formated_dia = dia.toString(self.ui.timeDia.displayFormat())
+       
         if motivo_dia == "":
             motivo_dia = "ninguno"
         newDiaPermiso = {'dia':time_formated_dia,'motivo':motivo_dia,'id':str(uuid.uuid4())}
